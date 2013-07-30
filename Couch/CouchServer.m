@@ -130,10 +130,11 @@ int gCouchLogLevel = 0;
 }
 
 
-- (CouchDatabase*) databaseNamed: (NSString*)name {
+- (CouchDatabase*) databaseNamed: (NSString*)name withBackingDatabase:(NSString*) backingDatabase {
     CouchDatabase* db = (CouchDatabase*) [_dbCache resourceWithRelativePath: name];
     if (!db) {
         db = [[[self databaseClass] alloc] initWithParent: self relativePath: name];
+        [db setBackingDatabase:backingDatabase];
         if (!db)
             return nil;
         if (!_dbCache)
@@ -143,6 +144,11 @@ int gCouchLogLevel = 0;
     }
     return db;
 }
+
+-(CouchDatabase*) databaseNamed:(NSString *)name {
+    return [self databaseNamed:name withBackingDatabase:nil];
+}
+
 
 /** Same as -databaseNamed:. Enables "[]" access in Xcode 4.4+ */
 - (id)objectForKeyedSubscript:(NSString*)key {

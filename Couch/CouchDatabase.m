@@ -78,9 +78,12 @@ static const NSUInteger kDocRetainLimit = 50;
     return self;
 }
 
+-(NSDictionary*) getParameters {
+    return nil;
+}
 
 - (RESTOperation*) create {
-    return [[self PUT: nil parameters: nil] start];
+    return [[self PUT: nil parameters: [self getParameters]] start];
 }
 
 
@@ -536,5 +539,9 @@ static const NSUInteger kDocRetainLimit = 50;
     }
 }
 
+
+-(void) setBackingDatabase:(NSString *)database{
+    backingDatabase = database;
+}
 
 @end

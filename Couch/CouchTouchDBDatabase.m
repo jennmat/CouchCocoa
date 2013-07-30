@@ -50,6 +50,14 @@ static NSString* const TD_DatabaseChangeNotification = @"TD_DatabaseChange";
 }
 
 
+
+-(NSDictionary *)getParameters {
+    if ( backingDatabase != nil ){
+        return [[NSDictionary alloc] initWithObjectsAndKeys:backingDatabase, @"X-Backing-Database", nil];
+    }
+    return nil;
+}
+
 - (BOOL) tracksChanges {
     return _tracking;
 }

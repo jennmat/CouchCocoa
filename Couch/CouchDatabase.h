@@ -34,6 +34,8 @@ typedef NSString* (^CouchDocumentPathMap)(NSString* documentID);
     NSMutableArray* _deferredChanges;
     CouchDocumentPathMap _documentPathMap;
     CouchModelFactory* _modelFactory;
+@protected
+    NSString *backingDatabase;
 }
 
 /** A convenience to instantiate a CouchDatabase directly from a URL, without having to first instantiate a CouchServer.
@@ -184,6 +186,10 @@ typedef NSString* (^CouchDocumentPathMap)(NSString* documentID);
 
 /** All currently configured persistent replications involving this database, as CouchPersistentReplication objects. */
 @property (readonly) NSArray* replications;
+
+
+// methods for instance variable 'backingDatabase'
+-(void) setBackingDatabase:(NSString*) database;
 
 @end
 

@@ -57,6 +57,11 @@
     Multiple calls with the same name will return the same CouchDatabase instance. */
 - (CouchDatabase*) databaseNamed: (NSString*)name;
 
+/** Create a backed database.  This is a database that gets it's computed views from a server, instead of computing
+    it's own views.  It also starts an immediate pull and push replication */
+- (CouchDatabase*) databaseNamed: (NSString*)name withBackingDatabase:(NSString*) backingDatabase;
+
+
 /** Same as -databaseNamed:. Enables "[]" access in Xcode 4.4+ */
 - (id)objectForKeyedSubscript:(NSString*)key;
 
