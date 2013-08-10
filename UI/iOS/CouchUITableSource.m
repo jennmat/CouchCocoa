@@ -147,6 +147,8 @@
             value = nil;
         if (!value)
             value = [row.document propertyForKey: _labelProperty];
+    } else {
+        return [[row key] description];
     }
     return [value description];
 }
